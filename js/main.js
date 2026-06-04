@@ -115,6 +115,7 @@ function initSigma(config) {
         a.parseGexf(data,dataReady);
     else
 	    a.parseJson(data,dataReady);
+    gexf = sigmaInst = null;
 	//clickable edges
 	sigInst.bind('upedges', function(e) {
     var edge = e.content[0];
@@ -122,7 +123,6 @@ function initSigma(config) {
         window.open(edge.annotlink, '_blank');
     }
 });
-    gexf = sigmaInst = null;
 }
 
 
