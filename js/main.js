@@ -86,12 +86,7 @@ function initSigma(config) {
     a.active = !1;
     a.neighbors = {};
     a.detail = !1;
-	//add for clickable edges
-	a.settings({
-  enableEdgeHovering: true,
-  edgeHoverPrecision: 5,
-  edgesClickable: true
-});
+
 
 
     dataReady = function() {//This is called as soon as data is loaded
@@ -122,14 +117,7 @@ function initSigma(config) {
     else
 	    a.parseJson(data,dataReady);
     gexf = sigmaInst = null;
-	//clickable edges
-	sigInst.bind('upedges', function(e) {
-    var edge = e.content[0];
-		console.log("Edge clicked:", edge); // debug
-    if (edge.annotlink) {
-        window.open(edge.annotlink, '_blank');
-    }
-});
+	
 }
 
 
