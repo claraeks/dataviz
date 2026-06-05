@@ -86,6 +86,8 @@ function initSigma(config) {
     a.active = !1;
     a.neighbors = {};
     a.detail = !1;
+	enableEdgeHovering: true, // <-- figure out clickable edges
+    edgeHoverColor: 'edge',   // <-- OPTIONAL: highlights edge on hover
 
 
 
@@ -286,6 +288,20 @@ function configSigmaElements(config) {
 		});
 
     }
+	
+	// Bind the clickable edge event
+sigInst.bind('clickEdge', function(e) {
+    // In Sigma v1, edge details are found in e.data.edge
+    var edgeClicked = e.data.edge; 
+    
+    console.log("Edge clicked! ID is: " + edgeClicked.id);
+    console.log("Source node: " + edgeClicked.source + " | Target node: " + edgeClicked.target);
+
+    // OPTIONAL: Custom logic inside the OII template
+    // For example, writing edge details into the OII side panel:
+    // document.getElementById('mainpanel').innerHTML = "<h3>Edge info</h3>" + edgeClicked.label;
+});
+	
     $GP.bg = $(sigInst._core.domElements.bg);
     $GP.bg2 = $(sigInst._core.domElements.bg2);
     var a = [],
