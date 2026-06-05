@@ -108,6 +108,17 @@ function initSigma(config) {
 		    nodeActive(a.content[0])
 		});
 
+		//match edge color to node
+		var nodeColor = {};
+a.iterNodes(function(n){
+    nodeColor[n.id] = n.color;
+});
+
+a.iterEdges(function(e){
+    e.color = nodeColor[e.target];
+});
+
+		
 		a.draw();
 		configSigmaElements(config);
 	}
