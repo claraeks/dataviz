@@ -140,11 +140,7 @@ function initSigma(config) {
 
     // Debug
     		console.log("Edge clicked:", edge);
-			var link = edge.attr && edge.attr.annotlink;
-    // Open the link stored in the edge attribute "annotlink"
-    		if (link) {
-        		window.open(link, '_blank');
-    		}
+			edgeActive(edge);
 		});
 		a.draw();
 		configSigmaElements(config);
@@ -629,6 +625,36 @@ function nodeActive(a) {
     sigInst.active = a;
     window.location.hash = b.label;
 }
+//attempt clickable edges
+function edgeActive(edge) {
+    // Clear previous state
+    sigInst.neighbors = {};
+    sigInst.detail = true;
+
+    // Show the info panel
+    showGroups(false);
+
+    // Extract metadata
+    var attrs = edge.attr || {};
+    var html = [];
+
+    for (var key in attrs) {
+        html.push('<span><strong>' + key + ':</strong> ' + attrs[key] + '</span><br/>');
+    }
+
+    // Title = source → target
+    var source = sigInst._core.graph.nodesIndex[edge.source].label;
+    var target = sigInst._core.graph.nodesIndex[edge.target].label;
+
+    $GP.info_name.html("<div><span>" + source + " → " + target + "</span></div>");
+    $GP.info_data.html(html.join(""));
+
+    // Show panel
+    $GP.info_data.show();
+    $GP.info_p.html("Edge Metadata:");
+    $GP.info.animate({width:'show'},350);
+}
+
 
 function showCluster(a) {
     var b = sigInst.clusters[a];
