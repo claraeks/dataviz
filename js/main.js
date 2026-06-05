@@ -100,8 +100,8 @@ function initSigma(config) {
 				// note: index may not be consistent for all nodes. Should calculate each time. 
 				 // alert(JSON.stringify(b.attr.attributes[5].val));
 				// alert(b.x);
-				//change group names
-				var group = b.attr && b.attr.attributes && b.attr.attributes.referencetype;
+				//change group names 
+				var group = b.attr && b.attr.attributes && 			b.attr.attributes.referencetype;
 				if (!group) group = "Other";
 				
 				a.clusters[group] || (a.clusters[group] = []);
@@ -109,7 +109,16 @@ function initSigma(config) {
 			}
 		
 		);
-	
+		//give groups colors
+		var groupColors = {}
+
+		a.iterNodes(function(n) {
+			var group = n.attr.attributes.referencetype;
+			if (!groupColors[group]) {
+				groupColors[group] = n.color;
+			}
+		});
+		
 		a.bind("upnodes", function (a) {
 		    nodeActive(a.content[0])
 		});
@@ -309,7 +318,7 @@ function configSigmaElements(config) {
     $GP.bg2 = $(sigInst._core.domElements.bg2);
     var a = [],
         b,x=1;
-		for (b in sigInst.clusters) a.push('<div style="line-height:12px"><a href="#' + b + '"><div style="width:40px;height:12px;border:1px solid #fff;background:' + b + ';display:inline-block"></div> ' + b + ' (' + sigInst.clusters[b].length + ' members)</a></div>');
+		for (b in sigInst.clusters) a.push('<div style="line-height:12px"><a href="#' + b + '"><div style="width:40px;height:12px;border:1px solid #fff;background:' + groupColors[b] + ';display:inline-block"></div> ' + b + ' (' + sigInst.clusters[b].length + ' members)</a></div>');
     //a.sort();
     $GP.cluster.content(a.join(""));
     b = {
