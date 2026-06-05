@@ -82,12 +82,6 @@ function initSigma(config) {
     	};
 	
     var a = sigma.init(document.getElementById("sigma-canvas")).drawingProperties(drawProps).graphProperties(graphProps).mouseProperties(mouseProps);
-	//clickable edges
-	a.settings({
-    enableEdgeHovering: true,
-    edgeHoverPrecision: 5,
-    edgesClickable: true
-});
 	
     sigInst = a;
     a.active = !1;
