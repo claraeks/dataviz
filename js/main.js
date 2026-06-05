@@ -100,8 +100,12 @@ function initSigma(config) {
 				// note: index may not be consistent for all nodes. Should calculate each time. 
 				 // alert(JSON.stringify(b.attr.attributes[5].val));
 				// alert(b.x);
-				a.clusters[b.color] || (a.clusters[b.color] = []);
-				a.clusters[b.color].push(b.id);//SAH: push id not label
+				//change group names
+				var group = b.attr && b.attr.attributes && b.attr.attributes.referencetype;
+				if (!group) group = "Other";
+				
+				a.clusters[group] || (a.clusters[group] = []);
+				a.clusters[group].push(b.id);//SAH: push id not label
 			}
 		
 		);
