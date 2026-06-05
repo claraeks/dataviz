@@ -83,6 +83,7 @@ function initSigma(config) {
     	};
 	
     var a = sigma.init(document.getElementById("sigma-canvas")).drawingProperties(drawProps).graphProperties(graphProps).mouseProperties(mouseProps);
+	a._core.settings('enableEdgeClicking', true);
 	
     sigInst = a;
     a.active = !1;
