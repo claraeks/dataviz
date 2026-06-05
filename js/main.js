@@ -82,6 +82,13 @@ function initSigma(config) {
     	};
 	
     var a = sigma.init(document.getElementById("sigma-canvas")).drawingProperties(drawProps).graphProperties(graphProps).mouseProperties(mouseProps);
+	//clickable edges
+	a.settings({
+    enableEdgeHovering: true,
+    edgeHoverPrecision: 5,
+    edgesClickable: true
+});
+	
     sigInst = a;
     a.active = !1;
     a.neighbors = {};
@@ -119,7 +126,18 @@ a.iterEdges(function(e){
     e.color = nodeColor[e.target];
 });
 
-		
+	// CLICKABLE EDGES
+a.bind('upedges', function(e) {
+    var edge = e.content[0];
+
+    // Debug
+    console.log("Edge clicked:", edge);
+
+    // Open the link stored in the edge attribute "annotlink"
+    if (edge.annotlink) {
+        window.open(edge.annotlink, '_blank');
+    }
+});
 		a.draw();
 		configSigmaElements(config);
 	}
