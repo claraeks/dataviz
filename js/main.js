@@ -112,26 +112,26 @@ function initSigma(config) {
 
 		//match edge color to node
 		var nodeColor = {};
-a.iterNodes(function(n){
-    nodeColor[n.id] = n.color;
-});
+		a.iterNodes(function(n){
+    		nodeColor[n.id] = n.color;
+		});
 
-a.iterEdges(function(e){
-    e.color = nodeColor[e.target];
-});
+		a.iterEdges(function(e){
+    		e.color = nodeColor[e.target];
+		});
 
 	// CLICKABLE EDGES
-a.bind('upedges', function(e) {
-    var edge = e.content[0];
+		a.bind('upedges', function(e) {
+    		var edge = e.content[0];
 
     // Debug
-    console.log("Edge clicked:", edge);
+    		console.log("Edge clicked:", edge);
 
     // Open the link stored in the edge attribute "annotlink"
-    if (edge.annotlink) {
-        window.open(edge.annotlink, '_blank');
-    }
-});
+    		if (edge.annotlink) {
+        		window.open(edge.annotlink, '_blank');
+    		}
+		});
 		a.draw();
 		configSigmaElements(config);
 	}
