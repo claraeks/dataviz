@@ -126,10 +126,10 @@ function initSigma(config) {
 
     // Debug
     		console.log("Edge clicked:", edge);
-
+			var link = edge.attr && edge.attr.annotlink;
     // Open the link stored in the edge attribute "annotlink"
-    		if (edge.annotlink) {
-        		window.open(edge.annotlink, '_blank');
+    		if (link) {
+        		window.open(link, '_blank');
     		}
 		});
 		a.draw();
