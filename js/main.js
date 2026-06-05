@@ -135,6 +135,10 @@ function initSigma(config) {
     		e.color = nodeColor[e.target];
 		});
 
+		a.draw();
+		configSigmaElements(config);
+	}
+
 
     if (data.indexOf("gexf")>0 || data.indexOf("xml")>0)
         a.parseGexf(data,dataReady);
