@@ -120,6 +120,16 @@ function initSigma(config) {
 	
 }
 
+//edge color matches node
+const container = document.getElementById("sigma-container");
+const renderer = new Sigma(graph, container, {
+  edgeReducer: (edge, data) => {
+    const res = { ...data };
+    const sourceNode = graph.source(edge);
+    res.color = graph.getNodeAttribute(sourceNode, "color");
+    return res;
+  }
+});
 
 function setupGUI(config) {
 	// Initialise main interface elements
