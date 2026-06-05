@@ -1,4 +1,5 @@
 var sigInst, canvas, $GP
+var groupColors = {}
 
 //Load configuration file
 var config={};
@@ -110,7 +111,7 @@ function initSigma(config) {
 		
 		);
 		//give groups colors
-		var groupColors = {}
+		groupColors = {}
 
 		a.iterNodes(function(n) {
 			var group = n.attr.attributes.referencetype;
